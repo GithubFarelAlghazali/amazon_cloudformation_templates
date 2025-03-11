@@ -1,0 +1,14 @@
+{
+     "Resources": {
+          "Cluster": {
+               "Type": "AWS::Redshift::Cluster",
+               "Properties": {
+                    "NodeType": "ra3.xlplus",
+                    "MasterUsername": "master",
+                    "ClusterType": "single-node",
+                    "DBName": "mydb",
+                    "MasterUserPassword": "Z7kW0oI^"
+               }
+          }
+     }
+}

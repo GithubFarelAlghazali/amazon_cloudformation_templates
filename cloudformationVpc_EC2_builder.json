@@ -1,0 +1,43 @@
+{
+     "AWSTemplateFormatVersion": "2010-09-09",
+     "Resources": {
+          "VPC": {
+               "Type": "AWS::EC2::VPC",
+               "Properties": {
+                    "CidrBlock": "10.0.0.0/16"
+               }
+          },
+          "PublicSubnet1": {
+               "Type": "AWS::EC2::Subnet",
+               "Properties": {
+                    "VpcId": { "Ref": "VPC" },
+                    "AvailabilityZone": "us-east-1a",
+                    "CidrBlock": "10.0.1.0/24"
+               }
+          },
+          "PublicSubnet2": {
+               "Type": "AWS::EC2::Subnet",
+               "Properties": {
+                    "VpcId": { "Ref": "VPC" },
+                    "AvailabilityZone": "us-east-1a",
+                    "CidrBlock": "10.0.2.0/24"
+               }
+          },
+          "Instance1": {
+               "Type": "AWS::EC2::Instance",
+               "Properties": {
+                    "ImageId": "ami-0c101f26f147fa7fd",
+                    "InstanceType": "t2.micro",
+                    "SubnetId": { "Ref": "PublicSubnet1" }
+               }
+          },
+          "Instance2": {
+               "Type": "AWS::EC2::Instance",
+               "Properties": {
+                    "ImageId": "ami-0c101f26f147fa7fd",
+                    "InstanceType": "t2.micro",
+                    "SubnetId": { "Ref": "PublicSubnet2" }
+               }
+          }
+     }
+}

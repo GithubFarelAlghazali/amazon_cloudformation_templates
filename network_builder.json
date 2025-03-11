@@ -1,0 +1,136 @@
+{
+     "AWSTemplateFormatVersion": "2010-09-09",
+     "Resources": {
+          "VPC": {
+               "Type": "AWS::EC2::VPC",
+               "Properties": {
+                    "CidrBlock": "10.0.0.0/16",
+                    "EnableDnsHostnames": true,
+                    "EnableDnsSupport": true,
+                    "Tags": [
+                         {
+                              "Key": "Name",
+                              "Value": "Server"
+                         }
+                    ]
+               }
+          },
+          "PublicSubnet1": {
+               "Type": "AWS::EC2::Subnet",
+               "Properties": {
+                    "VpcId": {
+                         "Ref": "VPC"
+                    },
+                    "AvailabilityZone": "us-east-1a",
+                    "CidrBlock": "10.0.1.0/24",
+                    "Tags": [
+                         {
+                              "Key": "Name",
+                              "Value": "PublicSubnet1"
+                         }
+                    ]
+               }
+          },
+          "PrivateSubnet1": {
+               "Type": "AWS::EC2::Subnet",
+               "Properties": {
+                    "VpcId": {
+                         "Ref": "VPC"
+                    },
+                    "AvailabilityZone": "us-east-1a",
+                    "CidrBlock": "10.0.2.0/24",
+                    "Tags": [
+                         {
+                              "Key": "Name",
+                              "Value": "PrivateSubnet1"
+                         }
+                    ]
+               }
+          },
+          "PublicSubnet2": {
+               "Type": "AWS::EC2::Subnet",
+               "Properties": {
+                    "VpcId": {
+                         "Ref": "VPC"
+                    },
+                    "AvailabilityZone": "us-east-1b",
+                    "CidrBlock": "10.0.3.0/24",
+                    "Tags": [
+                         {
+                              "Key": "Name",
+                              "Value": "PublicSubnet2"
+                         }
+                    ]
+               }
+          },
+          "PrivateSubnet2": {
+               "Type": "AWS::EC2::Subnet",
+               "Properties": {
+                    "VpcId": {
+                         "Ref": "VPC"
+                    },
+                    "AvailabilityZone": "us-east-1b",
+                    "CidrBlock": "10.0.4.0/24",
+                    "Tags": [
+                         {
+                              "Key": "Name",
+                              "Value": "PrivateSubnet2"
+                         }
+                    ]
+               }
+          },
+          "InternetGateway": {
+               "Type": "AWS::EC2::InternetGateway",
+               "Properties": {
+                    "Tags": [
+                         {
+                              "Key": "Name",
+                              "Value": "server-igw"
+                         }
+                    ]
+               }
+          },
+          "RouteTable": {
+               "Type": "AWS::EC2::RouteTable",
+               "Properties": {
+                    "VpcId": {
+                         "Ref": "VPC"
+                    },
+                    "Tags": [
+                         {
+                              "Key": "Name",
+                              "Value": "public-rtb"
+                         }
+                    ]
+               }
+          },
+          "RouteTable2": {
+               "Type": "AWS::EC2::RouteTable",
+               "Properties": {
+                    "VpcId": {
+                         "Ref": "VPC"
+                    },
+                    "Tags": [
+                         {
+                              "Key": "Name",
+                              "Value": "private-1-rtb"
+                         }
+                    ]
+               }
+          },
+          "RouteTable3": {
+               "Type": "AWS::EC2::RouteTable",
+               "Properties": {
+                    "VpcId": {
+                         "Ref": "VPC"
+                    },
+                    "Tags": [
+                         {
+                              "Key": "Name",
+                              "Value": "private-2-rtb"
+                         }
+                    ]
+               }
+          }
+     }
+}
